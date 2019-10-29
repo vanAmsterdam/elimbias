@@ -1,0 +1,15 @@
+{
+    "gen_model": "collider-pf-cont",
+    "cnn_model": "base_model",
+    "encoder": "simple",
+    "mode3d": false,
+    "outcome": ["x", "y"],
+    "metrics": ["loss"],
+    "metrics_xy": [],
+    "save_summary_steps": 10,
+    "num_classes": 1,
+    "num_classes_x": 1,
+    "covar_mode": true,
+    "noisy_features": false,
+    "counterfactuals": false
+}

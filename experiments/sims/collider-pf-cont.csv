@@ -1,0 +1,10 @@
+variable,label,type,distribution,variable_model,param_1,param_2,b_x,b_t,b_y
+u1,u1,noise,Normal,,0,0.7071,1,0,-2
+u2,u2,noise,Normal,,0,0.7071,-1,1.828,0
+z,variance,noise,Normal,,0,1,0,0,-1
+n_x,noise_x,noise,Normal,,0,0.05,1,0,0
+n_t,noise_t,noise,Normal,,0,0.05,0,1,0
+n_y,noise_y,noise,Normal,,0,0.05,0,0,1
+x,size,dependent,Normal,Linear,0,,0,0,0
+t,treatment,dependent,Bernoulli,Logistic,-0.5,,0,0,1
+y,survival,dependent,Normal,Linear,-0.5,,0,0,0

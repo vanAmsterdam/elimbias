@@ -1,0 +1,123 @@
+digraph G {
+    graph [rankdir=LR, splines=false, ratio=.4];
+
+    subgraph cluster_cnn {
+        ranksep=1
+        nodesep=1.1
+        label = "Convolutional neural network"
+        style=dashed
+
+        subgraph cluster_convs {
+            label=""
+            style=invis
+
+            node [shape=ellipse]
+            img[image="nodule.png", label="", style=invisible, imagescale=true, fixedsize=true, height=4, width=4]
+
+            node [shape=trapezium, orientation=90, fixedsize=true, height=3, width=2]
+            convs [label="convolutional\nlayers"]
+
+            node [shape=rectangle, fixedsize=true, height=3.5, width=""]
+            fc_2[label="FC"]
+
+        }
+
+        node [shape=rectangle, fixedsize=true, width=.5, height=""];
+
+        subgraph cluster_last {
+            label=""
+            style=dashed
+
+            h_2 [label=<a<FONT POINT-SIZE='8'><SUB>2</SUB></FONT>>]
+            // h_2 [label="a_2^k"]
+            h_inv [label="...", fixedsize=true, height=1.1]
+            // h_11 [label="a_5^k"]
+            // h_12 [label="a_6^k"]
+            h_11 [label=<a<FONT POINT-SIZE='8'><SUB>5</SUB></FONT>>]
+            h_12 [label=<a<FONT POINT-SIZE='8'><SUB>6</SUB></FONT>>]
+        }
+
+        subgraph cluster_a1 {
+            style=invis
+            // h_1 [label="a_1^k", style=filled, color=orange]
+            h_1 [label=<a<FONT POINT-SIZE='8'><SUB>1</SUB></FONT>>]
+            // node[height=""]
+
+        }
+        img -> convs
+        convs -> fc_2
+
+        fc_2 -> h_12
+        fc_2 -> h_11
+        fc_2 -> h_inv
+        fc_2 -> h_2
+        fc_2 -> h_1
+
+        // edge[arrowsize=.5, penwidth=.8, splines=false]
+        h_12 -> y
+        h_11 -> y
+        h_inv -> y
+        h_2 -> y
+        h_1 -> y
+
+
+        // subgraph {
+        //     rank=same h_1, h_2, h_inv, h_11, h_12
+        // }
+
+    }
+
+    node [style=""]
+    // lx [label="L_x", shape=octagon]
+    lx [label=<L<FONT POINT-SIZE='10'><SUB>x</SUB></FONT>>, shape=doubleoctagon]
+    ly [label=<L<FONT POINT-SIZE='10'><SUB>y</SUB></FONT>>, shape=doubleoctagon]
+    lr [label=<L<FONT POINT-SIZE='10'><SUB>reg</SUB></FONT>>, shape=doubleoctagon]
+
+    // ly [label="L_y", shape=octagon]
+    // lr [label="L_{reg}", shape=octagon]
+    h_1 -> lx
+
+    // node [style=""]
+    // z [label="  z1 ", width=.7, height=.7]
+    // x [label="size'", width=.7, height=.7, style=filled, color=orange]
+
+    node [shape=ellipse, style="", width=.7, height=.7]
+    t [label=<<I>t</I>>, shape=ellipse]
+    y [label=<<I>y</I>>]
+
+    edge [];
+    t -> y
+    y -> ly
+
+    h_inv -> lr
+    // h_1 -> lr
+    edge [style=invis]
+    h_2 -> lr
+    h_11 -> lr
+    h_12 -> lr
+    y -> lr
+
+    // edge [style="invisible", arrowhead=none];
+
+
+    // h_12 -> z
+    // h_11 -> z
+    // h_2 -> z
+    // h_1 -> z
+
+
+    subgraph {
+        rank=same y, t, lx, lr;
+    }
+
+    // subgraph {
+    //     rank=same x, z
+    // }
+
+    // x -> z [style=invisible, arrowhead=none]
+    // x -> t [style=invisible, arrowhead=none]
+    // z -> x [style=invisible, arrowhead=none]
+    // z -> x [color=red]
+    // x -> z [style=invisible, arrowhead=none]
+
+}

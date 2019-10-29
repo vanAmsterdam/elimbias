@@ -1,0 +1,32 @@
+digraph G {
+    /* Entities */
+    lidcrepo[label="LIDC-IDRI repository"]
+    scans [label="scans\nN=1018\n(1010 patients)"]
+    nodules[label="3d nodules\nN=2599\n(6813 unique segmentations)"]
+    allslices[label="2d slices\nN=39044\nlidc/nodules2d"]
+    selectslices[label="2d slice-pool\nwith size / homogeneity measurements\nNtrain=5015\nNvalid=1528\n(train / valid split on nodule level)"]    
+    measurements[label="nodule measurements\n(on slice level)"]
+    observations[label="observations\n(x, y, z, t)\nNtrain=3000\nNvalid=1000"]
+    genmodel[label="data-generating mechanism\n(csv file)", shape="rectangle"]
+    obsimgpairs[label="pairs of images and outcome data\nNtrain=3000\nNvalid=1000"]
+
+    /* Relationships */
+    lidcrepo -> scans [label="download"]
+    scans -> nodules [label="lidc-preprocessing.py\nusing pylidc"]
+    nodules -> allslices [label="lidc-preprocessing.py"]
+    allslices -> measurements[label="measure_slices.py"]
+    allslices -> selectslices [label="prepare-data-2d.py\nfilter slices that all annotators think are nodule slices\nfilter nodules > 20mm"]
+    measurements -> selectslices
+    selectslices -> obsimgpairs [label="simulate_data.py"]
+    genmodel -> observations[label="simulate_data.py"]
+    observations -> obsimgpairs
+    measurements -> measurements[label="postprocess-measurements.py\n(normalize measurements)"]
+
+    /* Ranks */
+    subgraph {
+        rank=same allslices measurements;
+    }
+    subgraph {
+        rank=same genmodel allslices
+    }
+}
