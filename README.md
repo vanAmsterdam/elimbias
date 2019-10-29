@@ -1,15 +1,16 @@
 # Eliminating Biasing Signals in Images of Lung Cancer for Prognosis Predictions with Deep Learning
 
+
 This repository contains the necessary files to reproduce the results of paper
 "Eliminating Biasing Signals in Images of Lung Cancer for Prognosis Predictions with Deep Learning"
 by W.A.C. van Amsterdam, J.J.C. Verhoeff, P.A. de Jong, T. Leiner and M.J.C. Eijkemans; 
 in Nature Digital Medicine, 2019
 
-## Using the method
-
-This branch is kept for archival purposes only. Please see the master branch at https://github.com/vanamsterdam/elimbias for the most up to date version
-
 ## Replicating the experiments
+
+See this release for the code that generated the published results
+
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.3522229.svg)](https://doi.org/10.5281/zenodo.3522229)
 
 Please follow these steps to replicate the results as published.
 The original python scripts are (somewhat) self-explanatory.
