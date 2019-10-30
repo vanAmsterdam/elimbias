@@ -1,8 +1,8 @@
-# Eliminating Biasing Signals in Images of Lung Cancer for Prognosis Predictions with Deep Learning
+# Eliminating Biasing Signals in Lung Cancer Images for Prognosis Predictions with Deep Learning
 
 
 This repository contains the necessary files to reproduce the results of paper
-"Eliminating Biasing Signals in Images of Lung Cancer for Prognosis Predictions with Deep Learning"
+"Eliminating Biasing Signals Lung Cancer Images for Prognosis Predictions with Deep Learning"
 by W.A.C. van Amsterdam, J.J.C. Verhoeff, P.A. de Jong, T. Leiner and M.J.C. Eijkemans; 
 in Nature Digital Medicine, 2019
 
