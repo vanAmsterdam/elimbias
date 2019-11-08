@@ -6,6 +6,17 @@ import pydicom
 import pickle
 from sklearn.preprocessing import PowerTransformer
 
+
+def annotation_list_to_df(anns):
+    assert isinstance(anns, list)
+    dfs = []
+    for ann in anns:
+        dfs.append(annotation_to_df(ann))
+    df = pd.concat(dfs, ignore_index=True)
+    df["annotation_idx"] = range(1, df.shape[0]+1)
+    return df
+
+
 def get_intercept_and_slope(scan):
     ''' 
     scan is the results of a pydicom query
