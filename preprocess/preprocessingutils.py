@@ -6,6 +6,35 @@ import pydicom
 import pickle
 from sklearn.preprocessing import PowerTransformer
 
+def annotation_to_dict(ann):
+    '''
+    Flattens annotations into a single row pandas DataFrame
+    '''
+    
+    d = {
+        'patient_id': ann.scan.patient_id,
+        'nodule_id_lidc': ann._nodule_id,
+        'annotation_id_lidc': ann.id,
+        'scan_id': ann.scan_id,
+        'volume': ann.volume,
+        'surface_area': ann.surface_area,
+        'diameter': ann.diameter
+    }
+    feature_names = ['sublety', 'internalstructure', 'calcification',
+               'sphericity', 'margin', 'lobulation', 'spiculation',
+               'texture', 'malignancy']
+    for feature, value in zip(feature_names, ann.feature_vals()):
+        d[feature] = value
+    return d
+
+def annotation_to_df(ann):
+    try:
+        d = annotation_to_dict(ann)
+        d = {k: [v] for k, v in d.items()}
+        df = pd.DataFrame.from_dict(d)
+    except:
+        df = None
+    return df
 
 def annotation_list_to_df(anns):
     assert isinstance(anns, list)
